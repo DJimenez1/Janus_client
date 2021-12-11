@@ -21,7 +21,7 @@ const App = () => {
   const ref = useRef();
 
   useEffect(async () => {
-    await axios.get("http://18.216.164.81:8000/chat/api/botmessage-list/").then(
+    await axios.get("https://18.216.164.81:8000/chat/api/botmessage-list/").then(
       (response) => response.data.map((m) => setBotMessage(m.value)),
       (err) => console.error(err)
     );
@@ -47,11 +47,11 @@ const App = () => {
       newConvo.push({ mes: ref.current.value});
       
       setIsLoading(true)
-      await axios.post ('http://18.216.164.81:8000/chat/api/botmessage-list/', {value: ref.current.value})
+      await axios.post ('https://18.216.164.81:8000/chat/api/botmessage-list/', {value: ref.current.value})
       .then (response => console.log (response))
       
       await axios
-        .get("http://18.216.164.81:8000/chat/api/botmessage-list/")
+        .get("https://18.216.164.81:8000/chat/api/botmessage-list/")
         .then((response) => {
           response.data.map((m) => ab = m.value)
         });
@@ -70,7 +70,7 @@ const App = () => {
     //Send last user message to database after negative feedback
     console.log(convo[convo.length - 2]["mes"]);
     axios
-      .post("http://18.216.164.81:8000/chat/api/message-list/", {
+      .post("https://18.216.164.81:8000/chat/api/message-list/", {
         value: convo[convo.length - 2]["mes"],
       })
       .then(function (response) {
